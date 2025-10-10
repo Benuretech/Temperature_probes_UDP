@@ -1,0 +1,5 @@
+# Ignore these files and directories while committing to Git
+*.cache
+.vscode/
+build/
+FastCRC/

@@ -1,0 +1,157 @@
+{
+    "ConfigBase": {},
+    "MCU": {},
+    "PICO": {
+        "picoscope_model": false,
+        "picoscope_ready": false,
+        "Task": "Wait",
+        "Status": "Stop",
+        "Result": {}
+    },
+    "CMD": {},
+    "Operation": {
+        "OPCheck_List": [],
+        "SN_List": {
+            "SBO": [],
+            "tooltype": []
+        }
+    },
+    "Live_SBO": {
+        "selected": null,
+        "Path": null,
+        "File": null,
+        "Result": {
+            "status": {
+                "color": "background-color: #f0f0f0",
+                "color_code": "#f0f0f0",
+                "message": "NA",
+                "level": 0,
+                "Accept": false,
+                "key": "NA",
+                "abs_level": 0
+            },
+            "I_Leackage": {
+                "lim": {
+                    "unit": "V",
+                    "LL": -0.01,
+                    "L": -0.0099,
+                    "H": 0.0099,
+                    "HH": 0.01
+                },
+                "val": null,
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                }
+            },
+            "R100": {
+                "lim": {
+                    "unit": "Ohms",
+                    "LL": 95,
+                    "L": 96,
+                    "H": 104,
+                    "HH": 105
+                },
+                "val": null,
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                }
+            },
+            "R300": {
+                "lim": {
+                    "unit": "Ohms",
+                    "LL": 295,
+                    "L": 296,
+                    "H": 304,
+                    "HH": 305
+                },
+                "val": null,
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                }
+            },
+            "V_Tolerance": {
+                "lim": {
+                    "unit": "%",
+                    "LL": -2,
+                    "L": -1.9,
+                    "H": 1.9,
+                    "HH": 2
+                },
+                "val": null,
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                }
+            },
+            "I_Tolerance": {
+                "lim": {
+                    "unit": "%",
+                    "LL": -2,
+                    "L": -1.9,
+                    "H": 1.9,
+                    "HH": 2
+                },
+                "val": null,
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                }
+            },
+            "RJ45_ST": {
+                "val": null
+            },
+            "RS485_ST": {
+                "val": null
+            },
+            "CAL_ST": {
+                "val": null
+            },
+            "PICO": {
+                "val": null
+            },
+            "SSR_ST": {
+                "val": null
+            },
+            "VERSION": {
+                "val": null,
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                }
+            }
+        }
+    }
+}

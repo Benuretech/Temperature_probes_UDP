@@ -1,0 +1,958 @@
+{
+    "MCU": {},
+    "PICO": {
+        "picoscope_model": false,
+        "picoscope_ready": false,
+        "Task": "Wait",
+        "Status": "Stop",
+        "Result": {}
+    },
+    "Live_SBO": {
+        "selected": null,
+        "Path": null,
+        "File": null,
+        "Result": {
+            "status": {
+                "color": "background-color: #f0f0f0",
+                "color_code": "#f0f0f0",
+                "message": "NA",
+                "level": 0,
+                "Accept": false,
+                "key": "NA",
+                "abs_level": 0
+            },
+            "VERSION": {
+                "val": null,
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                }
+            },
+            "I_Leackage": {
+                "lim": {
+                    "unit": "V",
+                    "LL": -0.01,
+                    "L": -0.0099,
+                    "H": 0.0099,
+                    "HH": 0.01
+                },
+                "val": null,
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                }
+            },
+            "R100": {
+                "lim": {
+                    "unit": "Ohms",
+                    "LL": 95,
+                    "L": 96,
+                    "H": 104,
+                    "HH": 105
+                },
+                "val": null,
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                }
+            },
+            "R300": {
+                "lim": {
+                    "unit": "Ohms",
+                    "LL": 295,
+                    "L": 296,
+                    "H": 304,
+                    "HH": 305
+                },
+                "val": null,
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                }
+            },
+            "V_Tolerance": {
+                "lim": {
+                    "unit": "%",
+                    "LL": -2,
+                    "L": -1.9,
+                    "H": 1.9,
+                    "HH": 2
+                },
+                "val": null,
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                }
+            },
+            "I_Tolerance": {
+                "lim": {
+                    "unit": "%",
+                    "LL": -2,
+                    "L": -1.9,
+                    "H": 1.9,
+                    "HH": 2
+                },
+                "val": null,
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                }
+            },
+            "RJ45_ST": {
+                "val": null
+            },
+            "RS485_ST": {
+                "val": null
+            },
+            "CAL_ST": {
+                "val": null
+            },
+            "PICO": {
+                "val": null
+            },
+            "SSR_ST": {
+                "val": null
+            }
+        }
+    },
+    "CMD": {},
+    "Test": {
+        "Template": {},
+        "Properties": {
+            "date": null,
+            "Original_date": null,
+            "Original_date_str_1": null,
+            "author": null,
+            "test_name": null,
+            "root_path": null,
+            "Folder": null,
+            "File": null,
+            "Path": null,
+            "selected": null,
+            "Iteration": null,
+            "BlueSoft_OPCheck_Rev": null
+        },
+        "SBO": {
+            "selected": null,
+            "Path": null,
+            "File": null,
+            "Result": {
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                },
+                "VERSION": {
+                    "val": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                },
+                "I_Leackage": {
+                    "lim": {
+                        "unit": "V",
+                        "LL": -0.01,
+                        "L": -0.0099,
+                        "H": 0.0099,
+                        "HH": 0.01
+                    },
+                    "val": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                },
+                "R100": {
+                    "lim": {
+                        "unit": "Ohms",
+                        "LL": 95,
+                        "L": 96,
+                        "H": 104,
+                        "HH": 105
+                    },
+                    "val": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                },
+                "R300": {
+                    "lim": {
+                        "unit": "Ohms",
+                        "LL": 295,
+                        "L": 296,
+                        "H": 304,
+                        "HH": 305
+                    },
+                    "val": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                },
+                "V_Tolerance": {
+                    "lim": {
+                        "unit": "%",
+                        "LL": -2,
+                        "L": -1.9,
+                        "H": 1.9,
+                        "HH": 2
+                    },
+                    "val": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                },
+                "I_Tolerance": {
+                    "lim": {
+                        "unit": "%",
+                        "LL": -2,
+                        "L": -1.9,
+                        "H": 1.9,
+                        "HH": 2
+                    },
+                    "val": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                },
+                "RJ45_ST": {
+                    "val": null
+                },
+                "RS485_ST": {
+                    "val": null
+                },
+                "CAL_ST": {
+                    "val": null
+                },
+                "PICO": {
+                    "val": null
+                },
+                "SSR_ST": {
+                    "val": null
+                }
+            }
+        },
+        "SN": {
+            "selected": null,
+            "ToolType": null,
+            "Config_File_Rev": null,
+            "SN_File_Rev": null,
+            "File": null,
+            "Path": null,
+            "SBO": {
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                },
+                "Serial_nb": null
+            },
+            "CUP": {
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                },
+                "Serial_nb": null,
+                "Resistance": {
+                    "val": null,
+                    "lim": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                }
+            },
+            "PSD": {
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                },
+                "Serial_nb": null,
+                "Resistance": {
+                    "val": null,
+                    "lim": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                },
+                "Continuity": {
+                    "val": null,
+                    "lim": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                }
+            },
+            "PSU1": {
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                },
+                "Serial_nb": null,
+                "enable": true,
+                "Capacitance": {
+                    "val": null,
+                    "lim": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                }
+            },
+            "PSU2": {
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                },
+                "Serial_nb": null,
+                "enable": false,
+                "Capacitance": {
+                    "val": null,
+                    "lim": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                }
+            },
+            "PSU3": {
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                },
+                "Serial_nb": null,
+                "enable": false,
+                "Capacitance": {
+                    "val": null,
+                    "lim": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                }
+            },
+            "PWX": {
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                },
+                "Serial_nb": null,
+                "Dull_Resistance": {
+                    "val": null,
+                    "lim": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                },
+                "Pressure": {
+                    "val": null
+                }
+            },
+            "RED": {
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                },
+                "Serial_nb": null,
+                "Coefficient": {
+                    "val": null,
+                    "lim": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                },
+                "Resistance": {
+                    "val": null,
+                    "lim": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                },
+                "Continuity": {
+                    "val": null,
+                    "lim": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                }
+            },
+            "CPB": {
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                },
+                "Serial_nb": null,
+                "Coefficient": {
+                    "val": null,
+                    "lim": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                }
+            }
+        },
+        "CUP": {
+            "selected": null,
+            "Path": null,
+            "File": null,
+            "Result": {
+                "ASD_TS_flag": "Unknown",
+                "Analysis_status": null,
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                },
+                "BT": {
+                    "Start": {
+                        "coord": {
+                            "p": null,
+                            "t": null,
+                            "V": null,
+                            "I": null
+                        },
+                        "val": null,
+                        "lim": null,
+                        "status": {
+                            "color": "background-color: #f0f0f0",
+                            "color_code": "#f0f0f0",
+                            "message": "NA",
+                            "level": 0,
+                            "Accept": false,
+                            "key": "NA",
+                            "abs_level": 0
+                        }
+                    },
+                    "I300V": {
+                        "coord": {
+                            "p": null,
+                            "t": null,
+                            "V": null,
+                            "I": null
+                        },
+                        "val": null,
+                        "lim": null,
+                        "status": {
+                            "color": "background-color: #f0f0f0",
+                            "color_code": "#f0f0f0",
+                            "message": "NA",
+                            "level": 0,
+                            "Accept": false,
+                            "key": "NA",
+                            "abs_level": 0
+                        }
+                    },
+                    "I500V": {
+                        "coord": {
+                            "p": null,
+                            "t": null,
+                            "V": null,
+                            "I": null
+                        },
+                        "val": null,
+                        "lim": null,
+                        "status": {
+                            "color": "background-color: #f0f0f0",
+                            "color_code": "#f0f0f0",
+                            "message": "NA",
+                            "level": 0,
+                            "Accept": false,
+                            "key": "NA",
+                            "abs_level": 0
+                        }
+                    },
+                    "Stop": {
+                        "coord": {
+                            "p": null,
+                            "t": null,
+                            "V": null,
+                            "I": null
+                        },
+                        "val": null,
+                        "lim": null,
+                        "status": {
+                            "color": "background-color: #f0f0f0",
+                            "color_code": "#f0f0f0",
+                            "message": "NA",
+                            "level": 0,
+                            "Accept": false,
+                            "key": "NA",
+                            "abs_level": 0
+                        }
+                    },
+                    "INom": {
+                        "val": null,
+                        "lim": null,
+                        "status": {
+                            "color": "background-color: #f0f0f0",
+                            "color_code": "#f0f0f0",
+                            "message": "NA",
+                            "level": 0,
+                            "Accept": false,
+                            "key": "NA",
+                            "abs_level": 0
+                        }
+                    }
+                },
+                "Asd": {
+                    "Start": {
+                        "coord": {
+                            "p": null,
+                            "t": null,
+                            "V": null,
+                            "I": null
+                        },
+                        "val": null,
+                        "lim": null,
+                        "status": {
+                            "color": "background-color: #f0f0f0",
+                            "color_code": "#f0f0f0",
+                            "message": "NA",
+                            "level": 0,
+                            "Accept": false,
+                            "key": "NA",
+                            "abs_level": 0
+                        }
+                    },
+                    "Stop": {
+                        "coord": {
+                            "p": null,
+                            "t": null,
+                            "V": null,
+                            "I": null
+                        },
+                        "val": null,
+                        "lim": null,
+                        "status": {
+                            "color": "background-color: #f0f0f0",
+                            "color_code": "#f0f0f0",
+                            "message": "NA",
+                            "level": 0,
+                            "Accept": false,
+                            "key": "NA",
+                            "abs_level": 0
+                        }
+                    },
+                    "INom": {
+                        "val": null,
+                        "lim": null,
+                        "status": {
+                            "color": "background-color: #f0f0f0",
+                            "color_code": "#f0f0f0",
+                            "message": "NA",
+                            "level": 0,
+                            "Accept": false,
+                            "key": "NA",
+                            "abs_level": 0
+                        }
+                    }
+                }
+            },
+            "Setting": {
+                "Mask": null,
+                "V1": null,
+                "T1_2": null,
+                "V2": null,
+                "T2_3": null,
+                "T3_4": null,
+                "V4": null,
+                "Current_max": null
+            },
+            "Time": null
+        },
+        "PSU": {
+            "selected": null,
+            "Path": null,
+            "File": null,
+            "Result": {
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                },
+                "Analysis_status": null,
+                "Start_level": {
+                    "coord": {
+                        "p": null,
+                        "t": null,
+                        "V": null
+                    },
+                    "val": null
+                },
+                "High_Stop_level": {
+                    "coord": {
+                        "p": null,
+                        "t": null,
+                        "V": null
+                    },
+                    "val": null,
+                    "lim": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                },
+                "Restart_Level": {
+                    "coord": {
+                        "p": null,
+                        "t": null,
+                        "V": null
+                    },
+                    "val": null,
+                    "lim": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                },
+                "Low_Stop_Level": {
+                    "coord": {
+                        "p": null,
+                        "t": null,
+                        "V": null
+                    },
+                    "val": null,
+                    "lim": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                },
+                "Charging_Rise_Time": {
+                    "coord": {
+                        "p": null,
+                        "t": null,
+                        "V": null
+                    },
+                    "val": null,
+                    "lim": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                },
+                "Discharging_Fall_Time": {
+                    "coord": {
+                        "p": null,
+                        "t": null,
+                        "V": null
+                    },
+                    "val": null,
+                    "lim": null,
+                    "status": {
+                        "color": "background-color: #f0f0f0",
+                        "color_code": "#f0f0f0",
+                        "message": "NA",
+                        "level": 0,
+                        "Accept": false,
+                        "key": "NA",
+                        "abs_level": 0
+                    }
+                }
+            },
+            "Setting": {
+                "ChA_Scale": null,
+                "ChB_Scale": null,
+                "CMD": "PSU_test"
+            },
+            "Time": null
+        },
+        "PWX": {
+            "SubFolder": null,
+            "selected": null,
+            "Number": null,
+            "Path": null,
+            "File": null,
+            "Result": {
+                "Analysis_status": null,
+                "single_stats": {
+                    "shot_index": null,
+                    "t_stamp": null,
+                    "Iinv": null,
+                    "Ibr": null,
+                    "Vbr": null,
+                    "Power": null,
+                    "Charge": null,
+                    "Capa": null,
+                    "dtime": null
+                },
+                "sum_stats": {
+                    "Median_Vbr": {
+                        "val": null,
+                        "lim": null,
+                        "status": {
+                            "color": "background-color: #f0f0f0",
+                            "color_code": "#f0f0f0",
+                            "message": "NA",
+                            "level": 0,
+                            "Accept": false,
+                            "key": "NA",
+                            "abs_level": 0
+                        }
+                    },
+                    "Jitter_Vbr": {
+                        "val": null,
+                        "lim": null,
+                        "status": {
+                            "color": "background-color: #f0f0f0",
+                            "color_code": "#f0f0f0",
+                            "message": "NA",
+                            "level": 0,
+                            "Accept": false,
+                            "key": "NA",
+                            "abs_level": 0
+                        }
+                    },
+                    "Median_Ibr": {
+                        "val": null,
+                        "lim": null,
+                        "status": {
+                            "color": "background-color: #f0f0f0",
+                            "color_code": "#f0f0f0",
+                            "message": "NA",
+                            "level": 0,
+                            "Accept": false,
+                            "key": "NA",
+                            "abs_level": 0
+                        }
+                    },
+                    "Median_dtime": {
+                        "val": null,
+                        "lim": null,
+                        "status": {
+                            "color": "background-color: #f0f0f0",
+                            "color_code": "#f0f0f0",
+                            "message": "NA",
+                            "level": 0,
+                            "Accept": false,
+                            "key": "NA",
+                            "abs_level": 0
+                        }
+                    }
+                },
+                "status": {
+                    "color": "background-color: #f0f0f0",
+                    "color_code": "#f0f0f0",
+                    "message": "NA",
+                    "level": 0,
+                    "Accept": false,
+                    "key": "NA",
+                    "abs_level": 0
+                }
+            },
+            "Setting": {
+                "ChA_Scale": null,
+                "ChB_Scale": null,
+                "CMD": "PWX_test"
+            },
+            "Time": null
+        },
+        "Report": {
+            "selected": null,
+            "Path": null,
+            "File": null
+        }
+    }
+}

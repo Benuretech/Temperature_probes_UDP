@@ -15,8 +15,8 @@ void Task_read_ADC(void *pvParameters)
   for (;;) // A Task shall never return or exit.
   {
 
-    // Thread has a delay of 10 ms, hence the sampling rate will be 100/s
-    delay(10);
+    // Thread has a delay of 1 ms, hence the sampling rate will be 100/s
+    delay(100);
 
     // If the maximum of elements in the array hasn't been reach, keep sampling every 10 ms
     if (measurements_index < MAX_ARRAY)
@@ -25,8 +25,8 @@ void Task_read_ADC(void *pvParameters)
       measurements_index++;
     }
 
-    // After 50ms, find the median of the array, reset the array, submit the value. The 50ms is the filtered streaming rate of the ADC
-    if (millis() - startcount > 50)
+    // After 1000ms, find the median of the array, reset the array, submit the value. The 1000ms is the filtered streaming rate of the ADC
+    if (millis() - startcount > 1000)
     {
 
       ADC_reading = QuickMedian<int>::GetMedian(measurements_A, measurements_index);

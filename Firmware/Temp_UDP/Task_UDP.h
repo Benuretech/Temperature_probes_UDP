@@ -20,4 +20,4 @@
 #endif
 
 // Task function declaration
-void Task_UDP(void *pvParameters);
+// (Declaration is in main .ino file)

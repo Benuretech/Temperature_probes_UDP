@@ -32,7 +32,7 @@ char hexCar[20];
 // Task function declarations
 void Task_LTM2985(void *pvParameters);
 void Task_read_ADC(void *pvParameters);
-
+void Task_UDP(void *pvParameters);
 // ---------------------- Main Setup Function ----------------------
 
 /**
@@ -76,7 +76,6 @@ void setup()
               1, // Priority
               &Task_read_ADC_Handle);
 
-  // Create UDP task - THIS WAS MISSING!
   xTaskCreate(Task_UDP,
               "Task_UDP",
               2048, // Larger stack size for network operations
@@ -106,8 +105,8 @@ void loop()
     Serial.println("Main loop running...");
     lastHeartbeat = millis();
   }
-
   delay(1);
+  // Small delay to prevent busy-waiting, could also use yield()
 }
 
 // ---------------------- Secondary Core Setup ----------------------

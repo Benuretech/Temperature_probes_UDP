@@ -150,7 +150,8 @@ class Main_Project(QtWidgets.QMainWindow):
         self.refresh_timer()
         self.database_write_timer()
         self.Buffer_Sample_List = []
-        self.max_buffer_size = 100 # Max samples to keep in memory per topic
+        self.init_time=0
+        self.max_buffer_size = 1000 # Max samples to keep in memory per topic
 
 
 
@@ -217,7 +218,11 @@ class Main_Project(QtWidgets.QMainWindow):
                         print(f"⚠️ Invalid data format for topic {topic}: {data}")
                         continue
                     if isinstance(payload, (int, float)):
-                        self.append_sample(topic, ts, payload)
+                        if self.init_time == 0:
+                            self.init_time = ts 
+
+                        self.append_sample(topic, (ts - self.init_time), payload)                        
+
                         new_update = True
                     else:
                         print(f"⚠️ Non-numeric payload for topic {topic}: {payload}")
@@ -233,8 +238,12 @@ class Main_Project(QtWidgets.QMainWindow):
                         except (TypeError, ValueError):
                             print(f"⚠️ Invalid data format for topic {topic}: {data}")
                             continue
-                        if isinstance(payload, (int, float)):                            
-                            self.append_sample(topic, ts, payload)
+                        if isinstance(payload, (int, float)):   
+                            if self.init_time == 0:
+                                self.init_time = ts 
+
+                            self.append_sample(topic, (ts - self.init_time), payload)
+
                             new_update = True
                         else:
                             print(f"⚠️ Non-numeric payload for topic {topic}: {payload}")

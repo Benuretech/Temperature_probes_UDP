@@ -151,6 +151,7 @@ class Main_Project(QtWidgets.QMainWindow):
         self.database_write_timer()
         self.Buffer_Sample_List = []
         self.init_time=0
+        self.init_date=0
         self.max_buffer_size = 1000 # Max samples to keep in memory per topic
 
 
@@ -219,7 +220,8 @@ class Main_Project(QtWidgets.QMainWindow):
                         continue
                     if isinstance(payload, (int, float)):
                         if self.init_time == 0:
-                            self.init_time = ts 
+                            self.init_time = ts
+                            self.init_date = time.strftime("%H_%M_%S")
 
                         self.append_sample(topic, (ts - self.init_time), payload)                        
 
@@ -240,7 +242,8 @@ class Main_Project(QtWidgets.QMainWindow):
                             continue
                         if isinstance(payload, (int, float)):   
                             if self.init_time == 0:
-                                self.init_time = ts 
+                                self.init_time = ts
+                                self.init_date = time.strftime("%H_%M_%S")
 
                             self.append_sample(topic, (ts - self.init_time), payload)
 
@@ -361,47 +364,82 @@ class Main_Project(QtWidgets.QMainWindow):
 
     def Save_cvs_cmd(self):
         """
-        Browse for a .db database file and convert all samples to CSV format.
+        Export database samples to CSV format.
+        - If project DB exists: Use current DB and save CSV in same folder with init_date appended
+        - If no project DB: Browse for DB file and save CSV in same folder with init_date appended
         CSV structure: topic[1] time value topic[2] time value ...
         Each topic gets 3 columns: topic_name, time, value
         """
         try:
-            # Browse for database file
-            db_file_path, _ = QFileDialog.getOpenFileName(
-                self,
-                "Select Database File",
-                "",
-                "Database files (*.db *.sqlite *.sqlite3);;All files (*.*)"
-            )
+            temp_db = None
+            db_file_path = None
+            csv_file_path = None
             
-            if not db_file_path:
-                return  # User cancelled
+            # Check if we have a current project database
+            if self.project_created and self.DB.linked:
+                # Use current project database
+                db_file_path = self.DB.db_file_path
+                temp_db = self.DB  # Use existing connection
+                
+                # Generate CSV filename in same folder as database
+                db_dir = os.path.dirname(db_file_path)
+                db_filename_no_ext = os.path.splitext(os.path.basename(db_file_path))[0]
+                
+                # Append init_date if available, otherwise use current time
+                if hasattr(self, 'init_date') and self.init_date != 0:
+                    date_suffix = self.init_date
+                else:
+                    date_suffix = time.strftime("%H_%M_%S")
+                
+                csv_filename = f"{db_filename_no_ext}_{date_suffix}.csv"
+                csv_file_path = os.path.join(db_dir, csv_filename)
+                
+                print(f"Using current project database: {db_file_path}")
+                print(f"CSV will be saved as: {csv_file_path}")
+                
+            else:
+                # No current project, browse for database file
+                db_file_path, _ = QFileDialog.getOpenFileName(
+                    self,
+                    "Select Database File",
+                    "",
+                    "Database files (*.db *.sqlite *.sqlite3);;All files (*.*)"
+                )
+                
+                if not db_file_path:
+                    return  # User cancelled
+                
+                # Generate CSV filename in same folder as selected database
+                db_dir = os.path.dirname(db_file_path)
+                db_filename_no_ext = os.path.splitext(os.path.basename(db_file_path))[0]
+                
+                # Use init_date if available, otherwise use current time
+                if hasattr(self, 'init_date') and self.init_date != 0:
+                    date_suffix = self.init_date
+                else:
+                    date_suffix = time.strftime("%H_%M_%S")
+                
+                csv_filename = f"{db_filename_no_ext}_{date_suffix}.csv"
+                csv_file_path = os.path.join(db_dir, csv_filename)
+                
+                # Create a temporary database connection
+                temp_db = DataBaseWrap()
+                temp_db.connect_DB(db_file_path)
+                
+                print(f"Using selected database: {db_file_path}")
+                print(f"CSV will be saved as: {csv_file_path}")
             
-            # Browse for CSV save location
-            csv_file_path, _ = QFileDialog.getSaveFileName(
-                self,
-                "Save CSV File",
-                "",
-                "CSV files (*.csv);;All files (*.*)"
-            )
-            
-            if not csv_file_path:
-                return  # User cancelled
-            
-            # Ensure CSV file has .csv extension
-            if not csv_file_path.lower().endswith('.csv'):
-                csv_file_path += '.csv'
-            
-            # Create a temporary database connection
-            temp_db = DataBaseWrap()
-            temp_db.connect_DB(db_file_path)
-            
+            # Export data to CSV
             with temp_db.get_session() as session:
                 # Get all samples ordered by time
                 samples = session.query(Sample).order_by(Sample.time).all()
                 
                 if not samples:
-                    print("No samples found in the database.")
+                    QMessageBox.information(
+                        self,
+                        "No Data",
+                        "No samples found in the database."
+                    )
                     return
                 
                 # Group samples by topic
@@ -454,11 +492,13 @@ class Main_Project(QtWidgets.QMainWindow):
                 print(f"Exported {max_samples} rows with {len(sorted_topics)} topics")
                 
                 # Show success message to user
-                QtWidgets.QMessageBox.information(
+                QMessageBox.information(
                     self,
                     "Export Complete",
                     f"Database exported successfully!\n\n"
-                    f"File: {csv_file_path}\n"
+                    f"Source: {os.path.basename(db_file_path)}\n"
+                    f"CSV File: {os.path.basename(csv_file_path)}\n"
+                    f"Location: {db_dir}\n"
                     f"Topics: {len(sorted_topics)}\n"
                     f"Rows: {max_samples}\n"
                     f"Total samples: {len(samples)}"
@@ -467,14 +507,14 @@ class Main_Project(QtWidgets.QMainWindow):
         except Exception as e:
             error_msg = f"Error exporting database to CSV: {str(e)}"
             print(error_msg)
-            QtWidgets.QMessageBox.critical(
+            QMessageBox.critical(
                 self,
                 "Export Error",
                 error_msg
             )
         finally:
-            # Clean up temporary database connection
-            if 'temp_db' in locals() and temp_db.linked:
+            # Clean up temporary database connection (only if we created a new one)
+            if temp_db is not None and temp_db != self.DB and hasattr(temp_db, 'linked') and temp_db.linked:
                 temp_db.engine.dispose()
 
 

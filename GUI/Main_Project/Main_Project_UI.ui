@@ -611,8 +611,8 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>900</y>
+      <x>570</x>
+      <y>910</y>
       <width>651</width>
       <height>181</height>
      </rect>
@@ -863,7 +863,7 @@
            <string notr="true">background-color: #ff4800;</string>
           </property>
           <property name="text">
-           <string>CH1</string>
+           <string>RTDA</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -888,12 +888,12 @@
               </font>
              </property>
              <property name="text">
-              <string>F#</string>
+              <string>RTD1</string>
              </property>
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLabel" name="FLT1_rd">
+            <widget class="QLabel" name="RTDA1_rd">
              <property name="font">
               <font>
                <family>Arial</family>
@@ -920,12 +920,12 @@
               </font>
              </property>
              <property name="text">
-              <string>T</string>
+              <string>RTD2</string>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QLabel" name="CH1_rd">
+            <widget class="QLabel" name="RTDA2_rd">
              <property name="font">
               <font>
                <family>Arial</family>
@@ -970,7 +970,7 @@
            <string notr="true">background-color: #ff4800;</string>
           </property>
           <property name="text">
-           <string>CH2</string>
+           <string>RTDB</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -995,12 +995,12 @@
               </font>
              </property>
              <property name="text">
-              <string>F#</string>
+              <string>RTD1</string>
              </property>
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLabel" name="FLT2_rd">
+            <widget class="QLabel" name="RTDB1_rd">
              <property name="font">
               <font>
                <family>Arial</family>
@@ -1027,12 +1027,12 @@
               </font>
              </property>
              <property name="text">
-              <string>T</string>
+              <string>RTD2</string>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QLabel" name="CH2_rd">
+            <widget class="QLabel" name="RTDB2_rd">
              <property name="font">
               <font>
                <family>Arial</family>
@@ -1077,7 +1077,7 @@
            <string notr="true">background-color: #ff4800;</string>
           </property>
           <property name="text">
-           <string>CH3</string>
+           <string>RTDC</string>
           </property>
           <property name="alignment">
            <set>Qt::AlignmentFlag::AlignCenter</set>
@@ -1102,12 +1102,12 @@
               </font>
              </property>
              <property name="text">
-              <string>F#</string>
+              <string>RTD1</string>
              </property>
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QLabel" name="FLT3_rd">
+            <widget class="QLabel" name="RTDC1_rd">
              <property name="font">
               <font>
                <family>Arial</family>
@@ -1134,119 +1134,12 @@
               </font>
              </property>
              <property name="text">
-              <string>T</string>
+              <string>RTD2</string>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QLabel" name="CH3_rd">
-             <property name="font">
-              <font>
-               <family>Arial</family>
-               <pointsize>18</pointsize>
-              </font>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::Shape::WinPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Shadow::Sunken</enum>
-             </property>
-             <property name="text">
-              <string>NA</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </item>
-     <item>
-      <widget class="QFrame" name="frame_9">
-       <property name="frameShape">
-        <enum>QFrame::Shape::StyledPanel</enum>
-       </property>
-       <property name="frameShadow">
-        <enum>QFrame::Shadow::Raised</enum>
-       </property>
-       <layout class="QVBoxLayout" name="verticalLayout_5">
-        <item>
-         <widget class="QLabel" name="lb_CH4">
-          <property name="font">
-           <font>
-            <family>Arial</family>
-            <pointsize>18</pointsize>
-           </font>
-          </property>
-          <property name="styleSheet">
-           <string notr="true">background-color: #ff4800;</string>
-          </property>
-          <property name="text">
-           <string>CH4</string>
-          </property>
-          <property name="alignment">
-           <set>Qt::AlignmentFlag::AlignCenter</set>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QFrame" name="frame_10">
-          <property name="frameShape">
-           <enum>QFrame::Shape::StyledPanel</enum>
-          </property>
-          <property name="frameShadow">
-           <enum>QFrame::Shadow::Raised</enum>
-          </property>
-          <layout class="QFormLayout" name="formLayout_5">
-           <item row="0" column="0">
-            <widget class="QLabel" name="label_17">
-             <property name="font">
-              <font>
-               <family>Arial</family>
-               <pointsize>18</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>F#</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLabel" name="FLT4_rd">
-             <property name="font">
-              <font>
-               <family>Arial</family>
-               <pointsize>18</pointsize>
-              </font>
-             </property>
-             <property name="frameShape">
-              <enum>QFrame::Shape::WinPanel</enum>
-             </property>
-             <property name="frameShadow">
-              <enum>QFrame::Shadow::Sunken</enum>
-             </property>
-             <property name="text">
-              <string>NA</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="label_18">
-             <property name="font">
-              <font>
-               <family>Arial</family>
-               <pointsize>18</pointsize>
-              </font>
-             </property>
-             <property name="text">
-              <string>T</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QLabel" name="CH4_rd">
+            <widget class="QLabel" name="RTDC2_rd">
              <property name="font">
               <font>
                <family>Arial</family>
@@ -1293,6 +1186,345 @@
     <property name="flat">
      <bool>false</bool>
     </property>
+   </widget>
+   <widget class="QFrame" name="frame_11">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>640</y>
+      <width>311</width>
+      <height>441</height>
+     </rect>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::StyledPanel</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Raised</enum>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout_6">
+     <item>
+      <widget class="QFrame" name="frame_12">
+       <property name="frameShape">
+        <enum>QFrame::Shape::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Raised</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <widget class="QLabel" name="Module1_rd">
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: #ff4800;</string>
+          </property>
+          <property name="text">
+           <string>RTDA</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frame_13">
+          <property name="frameShape">
+           <enum>QFrame::Shape::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Raised</enum>
+          </property>
+          <layout class="QFormLayout" name="formLayout_6">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_19">
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>18</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Battery</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="RTDA_Bat_rd">
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>18</pointsize>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::Shape::WinPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Shadow::Sunken</enum>
+             </property>
+             <property name="text">
+              <string>NA</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_20">
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>18</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>5v</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="RTDA_5v_rd">
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>18</pointsize>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::Shape::WinPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Shadow::Sunken</enum>
+             </property>
+             <property name="text">
+              <string>NA</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame" name="frame_14">
+       <property name="frameShape">
+        <enum>QFrame::Shape::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Raised</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_8">
+        <item>
+         <widget class="QLabel" name="Module2_rd">
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: #ff4800;</string>
+          </property>
+          <property name="text">
+           <string>RTDB</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frame_15">
+          <property name="frameShape">
+           <enum>QFrame::Shape::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Raised</enum>
+          </property>
+          <layout class="QFormLayout" name="formLayout_7">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_21">
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>18</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Battery</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="RTDB_Bat_rd">
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>18</pointsize>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::Shape::WinPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Shadow::Sunken</enum>
+             </property>
+             <property name="text">
+              <string>NA</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_22">
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>18</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>5v</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="RTDB_5v_rd">
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>18</pointsize>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::Shape::WinPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Shadow::Sunken</enum>
+             </property>
+             <property name="text">
+              <string>NA</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QFrame" name="frame_16">
+       <property name="frameShape">
+        <enum>QFrame::Shape::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Shadow::Raised</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <item>
+         <widget class="QLabel" name="Module3_rd">
+          <property name="font">
+           <font>
+            <family>Arial</family>
+            <pointsize>18</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">background-color: #ff4800;</string>
+          </property>
+          <property name="text">
+           <string>RTC</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignmentFlag::AlignCenter</set>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QFrame" name="frame_17">
+          <property name="frameShape">
+           <enum>QFrame::Shape::StyledPanel</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Shadow::Raised</enum>
+          </property>
+          <layout class="QFormLayout" name="formLayout_8">
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_23">
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>18</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Battery</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="RTDC_Bat_rd">
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>18</pointsize>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::Shape::WinPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Shadow::Sunken</enum>
+             </property>
+             <property name="text">
+              <string>NA</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="label_24">
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>18</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>5v</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLabel" name="RTDC_5v_rd">
+             <property name="font">
+              <font>
+               <family>Arial</family>
+               <pointsize>18</pointsize>
+              </font>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::Shape::WinPanel</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Shadow::Sunken</enum>
+             </property>
+             <property name="text">
+              <string>NA</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

@@ -1,6 +1,5 @@
 #include "LTM2985.h"
 
-
 // Assigns specific sensors to selected channels (e.g., sense resistor, RTDs).
 void configure_channels()
 {
@@ -8,25 +7,25 @@ void configure_channels()
   uint32_t channel_assignment_data;
 
   // ----- Channel 2: Assign Sense Resistor -----
-  channel_assignment_data =
-      SENSOR_TYPE__SENSE_RESISTOR | (uint32_t)0xFA000 << SENSE_RESISTOR_VALUE_LSB; // sense resistor - value: 1000.
+  channel_assignment_data = SENSOR_TYPE__SENSE_RESISTOR | (uint32_t)0xFA000 << SENSE_RESISTOR_VALUE_LSB; // sense resistor - value: 1000.
   assign_channel(2, channel_assignment_data);
   // ----- Channel 4: Assign RTD PT-100 -----
   channel_assignment_data =
       SENSOR_TYPE__RTD_PT_100 | RTD_RSENSE_CHANNEL__2 | RTD_NUM_WIRES__2_WIRE | RTD_EXCITATION_MODE__NO_ROTATION_SHARING | RTD_EXCITATION_CURRENT__500UA | RTD_STANDARD__AMERICAN;
   assign_channel(4, channel_assignment_data);
-  // ----- Channel 6: Assign RTD PT-100 -----
-  channel_assignment_data =
-      SENSOR_TYPE__RTD_PT_100 | RTD_RSENSE_CHANNEL__2 | RTD_NUM_WIRES__2_WIRE | RTD_EXCITATION_MODE__NO_ROTATION_SHARING | RTD_EXCITATION_CURRENT__500UA | RTD_STANDARD__AMERICAN;
-  assign_channel(6, channel_assignment_data);
-  // ----- Channel 8: Assign RTD PT-100 -----
-  channel_assignment_data =
-      SENSOR_TYPE__RTD_PT_100 | RTD_RSENSE_CHANNEL__2 | RTD_NUM_WIRES__2_WIRE | RTD_EXCITATION_MODE__NO_ROTATION_SHARING | RTD_EXCITATION_CURRENT__500UA | RTD_STANDARD__AMERICAN;
-  assign_channel(8, channel_assignment_data);
-  // ----- Channel 10: Assign RTD PT-100 -----
-  channel_assignment_data =
-      SENSOR_TYPE__RTD_PT_100 | RTD_RSENSE_CHANNEL__2 | RTD_NUM_WIRES__2_WIRE | RTD_EXCITATION_MODE__NO_ROTATION_SHARING | RTD_EXCITATION_CURRENT__500UA | RTD_STANDARD__AMERICAN;
-  assign_channel(10, channel_assignment_data);
+
+  // // ----- Channel 6: Assign RTD PT-100 -----
+  // channel_assignment_data =
+  //     SENSOR_TYPE__RTD_PT_100 | RTD_RSENSE_CHANNEL__2 | RTD_NUM_WIRES__2_WIRE | RTD_EXCITATION_MODE__NO_ROTATION_SHARING | RTD_EXCITATION_CURRENT__500UA | RTD_STANDARD__AMERICAN;
+  // assign_channel(6, channel_assignment_data);
+  // // ----- Channel 8: Assign RTD PT-100 -----
+  // channel_assignment_data =
+  //     SENSOR_TYPE__RTD_PT_100 | RTD_RSENSE_CHANNEL__2 | RTD_NUM_WIRES__2_WIRE | RTD_EXCITATION_MODE__NO_ROTATION_SHARING | RTD_EXCITATION_CURRENT__500UA | RTD_STANDARD__AMERICAN;
+  // assign_channel(8, channel_assignment_data);
+  // // ----- Channel 10: Assign RTD PT-100 -----
+  // channel_assignment_data =
+  //     SENSOR_TYPE__RTD_PT_100 | RTD_RSENSE_CHANNEL__2 | RTD_NUM_WIRES__2_WIRE | RTD_EXCITATION_MODE__NO_ROTATION_SHARING | RTD_EXCITATION_CURRENT__500UA | RTD_STANDARD__AMERICAN;
+  // assign_channel(10, channel_assignment_data);
 }
 
 // Setup overall global parameters for the LTM2985.
@@ -38,7 +37,7 @@ void configure_global_parameters()
   // -- Set any extra delay between conversions (in this case, 0*100us)
   transfer_byte_LTM2985(WRITE_TO_RAM, 0xFF, 0);
 }
-
+///////////////////////////////////////////////////////////////////////////////////////////////////
 // ***********************
 // Program the part
 // ***********************
@@ -49,10 +48,10 @@ void assign_channel(uint8_t channel_number, uint32_t channel_assignment_data)
 }
 
 // Reads temperature data from a given channel of the LTM2985
-RTD_result read_temp(uint8_t channel_number)
+RTD_result_type read_temp(uint8_t channel_number)
 {
-  RTD_result results;
-  results.channel = channel_number;
+  RTD_result_type RTD_result;
+  RTD_result.channel = channel_number;
 
   float scaled_result;
 
@@ -61,16 +60,16 @@ RTD_result read_temp(uint8_t channel_number)
   uint32_t raw_conversion_result;
 
   uint32_t raw_data = transfer_four_bytes_LTM2985(READ_FROM_RAM, start_address, 0);
-  results.fault = raw_data >> 24;
+  RTD_result.fault = raw_data >> 24;
   raw_conversion_result = raw_data & 0xFFFFFF;
 
-  results.value = raw_conversion_result;
+  RTD_result.value = raw_conversion_result;
 
   // Convert the 24 LSB's into a signed 32-bit integer
-  if (results.value & 0x800000)
-    results.value = results.value | 0xFF000000;
+  if (RTD_result.value & 0x800000)
+    RTD_result.value = RTD_result.value | 0xFF000000;
 
-  return results;
+  return RTD_result;
 }
 
 // Sends command to start temperature conversion for a specific channel
@@ -99,15 +98,15 @@ uint16_t get_start_address(uint16_t base_address, uint8_t channel_number)
 }
 
 // Reads and sends a byte array
-void set_SPI1_LTM2985()
+void set_SPI_LTM2985()
 {
   pinMode(CHIP_SELECT, OUTPUT);
 
-  SPI1.setSCK(SPI1_SCK);
-  SPI1.setTX(SPI1_TX);
-  SPI1.setRX(SPI1_RX);
-  SPI1.beginTransaction(SPISettings(1000000, MSBFIRST, SPI_MODE0));
-  SPI1.begin();
+  SPI.setSCK(SPI_SCK);
+  SPI.setTX(SPI_TX);
+  SPI.setRX(SPI_RX);
+  SPI.beginTransaction(SPISettings(1000000, MSBFIRST, SPI_MODE0));
+  SPI.begin();
 }
 
 // Reads and sends a 4-byte data block
@@ -155,7 +154,7 @@ void spi_transfer_byte_LTM2985(uint8_t tx, uint8_t *rx)
 {
 
   digitalWrite(CHIP_SELECT, false); //! 1) Pull CS low
-  *rx = SPI1.transfer(tx);          //! 2) Read byte and send byte
+  *rx = SPI.transfer(tx);           //! 2) Read byte and send byte
 
   digitalWrite(CHIP_SELECT, HIGH); //! 3) Pull CS high
 }
@@ -180,8 +179,8 @@ void spi_transfer_word_LTM2985(uint16_t tx, uint16_t *rx)
 
   digitalWrite(CHIP_SELECT, false); //! 1) Pull CS low
 
-  data_rx.b[1] = SPI1.transfer(data_tx.b[1]); //! 2) Read MSB and send MSB
-  data_rx.b[0] = SPI1.transfer(data_tx.b[0]); //! 3) Read LSB and send LSB
+  data_rx.b[1] = SPI.transfer(data_tx.b[1]); //! 2) Read MSB and send MSB
+  data_rx.b[0] = SPI.transfer(data_tx.b[0]); //! 3) Read LSB and send LSB
 
   *rx = data_rx.w;
 
@@ -196,6 +195,6 @@ void spi_transfer_block_LTM2985(uint8_t *tx, uint8_t *rx, uint8_t length)
   digitalWrite(CHIP_SELECT, false); //! 1) Pull CS low
 
   for (i = (length - 1); i >= 0; i--)
-    rx[i] = SPI1.transfer(tx[i]);  //! 2) Read and send byte array
+    rx[i] = SPI.transfer(tx[i]);   //! 2) Read and send byte array
   digitalWrite(CHIP_SELECT, HIGH); //! 3) Pull CS high
 }

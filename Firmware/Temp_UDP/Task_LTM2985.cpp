@@ -1,6 +1,7 @@
 #include "LTM2985.h"
 #include "GlobalHandles.h"
 #include "Custom_Structures.h"
+#include "Command_Define.h"
 
 /**
  * @brief Interrupt Service Routine for LTM2985 INT_PIN1
@@ -28,39 +29,51 @@ void Task_LTM2985(void *pvParameters)
     // Suppress unused parameter warning
     (void)pvParameters;
 
-    // Variables to store temperature readings and fault status for each channel
-    int32_t val1 = 0;   // Channel 1 temperature value
-    uint8_t fault1 = 0; // Channel 1 fault status
-    int32_t val2 = 0;   // Channel 2 temperature value
-    uint8_t fault2 = 0; // Channel 2 fault status
-    int32_t val3 = 0;   // Channel 3 temperature value
-    uint8_t fault3 = 0; // Channel 3 fault status
-    int32_t val4 = 0;   // Channel 4 temperature value
-    uint8_t fault4 = 0; // Channel 4 fault status
+    // Add initialization timeout to prevent hanging
+    unsigned long initStartTime = millis();
+    const unsigned long initTimeout = 10000; // 10 second timeout for initialization
 
-    uint8_t channel_nb_iterator;        // Tracks current channel being measured
-    RTD_result task_results;            // Stores results from temperature readings
+    RTD_result_type RTD_result; // Stores results from temperature readings
+    RTD_result_type RTD1_result;
+    RTD_result_type RTD2_result;
+    RTD_result_type RTD3_result;
+    RTD_result_type RTD4_result;
+    RTD_result_type RTD5_result;
+    RTD_result_type RTD6_result;
+    RTD_result_type RTD7_result;
+    RTD_result_type RTD8_result;
+
+    RTD1_result.channel = RTD1;
+    RTD2_result.channel = RTD2;
+    RTD3_result.channel = RTD3;
+    RTD4_result.channel = RTD4;
+    RTD5_result.channel = RTD5;
+    RTD6_result.channel = RTD6;
+    RTD7_result.channel = RTD7;
+    RTD8_result.channel = RTD8;
+
+    constexpr uint8_t channel_index[4] = {4, 6, 8, 10}; // Channel addresses
+    uint8_t channel_nb_iterator;                        // Tracks current channel being measured
+    channel_nb_iterator = 0;
     unsigned long startTime = millis(); // Timer for measurement timeout
     const unsigned long timeout = 2000; // 2 second timeout for measurements (ms)
 
-    // Initialize LTM2985 hardware interface and configuration
-    set_SPI1_LTM2985();                       // Configure SPI interface for LTM2985
-    uint8_t channel_index[4] = {4, 6, 8, 10}; // Channel addresses
-    configure_channels();                     // Set up measurement channels
-    configure_global_parameters();            // Configure global sensor parameters
+    set_SPI_LTM2985();             // Configure SPI interface for LTM2985
+    configure_global_parameters(); // Configure global sensor parameters
 
-    // Set up interrupt handler for measurement ready signal
+    delay(10); // Allow other tasks to run
+
     attachInterrupt(digitalPinToInterrupt(INT_PIN1), IRS_Pin1_handle, RISING);
 
     // Start measurement cycle
-    channel_nb_iterator = 0;
+
     measure_request(channel_index[channel_nb_iterator]); // Initiate first measurement
 
     // Main task loop
     for (;;) // A Task shall never return or exit.
     {
-        // Check for measurement ready notification (either interrupt or timeout)
-        uint32_t IRS_Pin1_flag = ulTaskNotifyTake(pdTRUE, 0);
+        // Check for measurement ready notification (blocking with timeout)
+        uint32_t IRS_Pin1_flag = ulTaskNotifyTake(pdTRUE, pdMS_TO_TICKS(100));
 
         if (IRS_Pin1_flag || (millis() - startTime > timeout))
         {
@@ -68,67 +81,52 @@ void Task_LTM2985(void *pvParameters)
             startTime = millis();  // Reset timeout timer
 
             // Read temperature from current channel
-            task_results = read_temp(channel_index[channel_nb_iterator]);
+            RTD_result = read_temp(channel_index[channel_nb_iterator]);
 
             // Store results in appropriate channel variables
-            switch (task_results.channel)
+            switch (RTD_result.channel)
             {
-            case 4: // Channel 1 results
-                val1 = task_results.value;
-                fault1 = task_results.fault;
+            case channel_index[0]: // Channel 1 results
+                RTD1_result.value = RTD_result.value;
+                RTD1_result.fault = RTD_result.fault;
+                xQueueSend(q_LTM2985_to_UDP, &RTD1_result, 0);
                 break;
 
-            case 6: // Channel 2 results
-                val2 = task_results.value;
-                fault2 = task_results.fault;
+            case channel_index[1]: // Channel 2 results
+                RTD2_result.value = RTD_result.value;
+                RTD2_result.fault = RTD_result.fault;
+                xQueueSend(q_LTM2985_to_UDP, &RTD2_result, 0);
                 break;
 
-            case 8: // Channel 3 results
-                val3 = task_results.value;
-                fault3 = task_results.fault;
+            case channel_index[2]: // Channel 3 results
+                RTD3_result.value = RTD_result.value;
+                RTD3_result.fault = RTD_result.fault;
+                xQueueSend(q_LTM2985_to_UDP, &RTD3_result, 0);
                 break;
 
-            case 10: // Channel 4 results
-                val4 = task_results.value;
-                fault4 = task_results.fault;
+            case channel_index[3]: // Channel 4 results
+                RTD4_result.value = RTD_result.value;
+                RTD4_result.fault = RTD_result.fault;
+                xQueueSend(q_LTM2985_to_UDP, &RTD4_result, 0);
                 break;
             }
 
             // Send results to Command task via queue
-            xQueueSend(q_LTM2985_to_UDP, &task_results, 0);
 
             // Move to next channel
             channel_nb_iterator++;
 
             // If we've cycled through all channels, print debug output
-            if (channel_nb_iterator >= 4)
+            if (channel_nb_iterator >= 0)
             {
-                // Serial debug output showing all channel readings and faults
-                Serial.print("TL2985 :");
-                Serial.print("ch1: ");
-                Serial.print(val1);
-                Serial.print(" err: ");
-                Serial.print(fault1);
-                Serial.print(" ch2: ");
-                Serial.print(val2);
-                Serial.print(" err: ");
-                Serial.print(fault2);
-                Serial.print(" ch3: ");
-                Serial.print(val3);
-                Serial.print(" err: ");
-                Serial.print(fault3);
-                Serial.print(" ch4: ");
-                Serial.print(val4);
-                Serial.print(" err: ");
-                Serial.print(fault4);
-                Serial.println();
-
                 channel_nb_iterator = 0; // Reset channel counter
             }
 
             // Initiate next measurement
             measure_request(channel_index[channel_nb_iterator]);
         }
+
+        delay(10);
     }
 }
 

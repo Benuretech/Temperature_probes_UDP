@@ -17,7 +17,7 @@ from PyQt6.QtWidgets import QStyledItemDelegate, QStyle
 import shutil, tempfile
 from GUI.Main_Project.Main_Project_UI import Ui_Main_Project
 from dvg_ringbuffer import RingBuffer
-
+import re
 
 from GUI.Main_Project.New_Project.New_Project import New_Project
 from GUI.Main_Project.Graphics.Temp_Graph import Temp_Graph
@@ -145,7 +145,20 @@ class Main_Project(QtWidgets.QMainWindow):
         self.Port = self.Main_Port_obj.Port
         self.project_created = False
         self.DB = DataBaseWrap()
-        self.topic_data = {}
+        self.RTD_data = {}
+        self.ADC_data = {}
+
+        self.RTDA_VAL_CMD=["RTDA1", "RTDA2", "RTDA3", "RTDA4", "RTDA5", "RTDA6", "RTDA7", "RTDA8"]
+        self.RTDB_VAL_CMD=["RTDB1", "RTDB2", "RTDB3", "RTDB4", "RTDB5", "RTDB6", "RTDB7", "RTDB8"]
+        self.RTDC_VAL_CMD=["RTDC1", "RTDC2", "RTDC3", "RTDC4", "RTDC5", "RTDC6", "RTDC7", "RTDC8"]
+        self.RTD_VAL_CMD=self.RTDA_VAL_CMD+self.RTDB_VAL_CMD+self.RTDC_VAL_CMD
+
+        self.RTDA_ADC_CMD=["RTDA_ADC1", "RTDA_ADC2"]
+        self.RTDB_ADC_CMD=["RTDB_ADC1", "RTDB_ADC2"]
+        self.RTDC_ADC_CMD=["RTDC_ADC1", "RTDC_ADC2"]
+        self.RTD_ADC_CMD=self.RTDA_ADC_CMD+self.RTDB_ADC_CMD+self.RTDC_ADC_CMD
+
+
         self.Temp_Graph_view = Temp_Graph(self.Ui_Main_Project_obj.Temp_Graph_widget_obj, title="MQTT Topics", x_label="Time", y_label="Value")
         self.refresh_timer()
         self.database_write_timer()
@@ -153,7 +166,6 @@ class Main_Project(QtWidgets.QMainWindow):
         self.init_time=0
         self.init_date=0
         self.max_buffer_size = 1000 # Max samples to keep in memory per topic
-
 
 
 
@@ -257,7 +269,7 @@ class Main_Project(QtWidgets.QMainWindow):
         if new_update:
             # Convert ring buffers to numpy arrays for the graph
             topic_arrays = {}
-            for topic, ring_buffer in self.topic_data.items():
+            for topic, ring_buffer in self.RTD_data.items():
                 topic_arrays[topic] = np.asarray(ring_buffer)
             self.Temp_Graph_view.set_topic_data(topic_arrays)
 
@@ -313,13 +325,35 @@ class Main_Project(QtWidgets.QMainWindow):
         # Convert ns → seconds
         t_sec = float(ts_ns) * 1e-9
 
-        # If topic not yet created, initialize its array
-        if topic not in self.topic_data:
-            self.topic_data[topic] = RingBuffer(capacity=self.max_buffer_size, dtype=(np.float64, 2))
 
-        # Append row [time_sec, value]
-        self.topic_data[topic].append([t_sec, payload])
-        self.Buffer_Sample_List.append((topic, t_sec, payload))
+        if topic in self.RTD_VAL_CMD:
+            # If topic not yet created, initialize its array
+            if topic not in self.RTD_data:
+                self.RTD_data[topic] = RingBuffer(capacity=self.max_buffer_size, dtype=(np.float64, 2))
+
+            # Append row [time_sec, value]
+            self.RTD_data[topic].append([t_sec, payload])
+            self.Buffer_Sample_List.append((topic, t_sec, payload))
+        elif topic in self.RTD_ADC_CMD:
+            match = re.match(r"RTD([ABC])_ADC([12])", topic)
+            if match:
+                RTD_module, RTD_number = match.groups()   # unpack into variables
+                rtd_name_module = f"RTD{RTD_module}"   # e.g. "RTDA", "RTDB", or "RTDC"
+                rtd_name_number = f"RTD{RTD_number}"   # e.g. "RTDA", "RTDB", or "RTDC"
+
+                if rtd_name_module not in self.ADC_data:
+                    self.ADC_data[rtd_name_module] = {}
+                self.ADC_data[rtd_name_module].update({RTD_number:payload})
+
+                self.Ui_Main_Project_obj.RTDA_5v_rd.setText(f"{self.ADC_data.get('RTDA', {}).get('1', 0.0):.3f} V")
+                self.Ui_Main_Project_obj.RTDB_5v_rd.setText(f"{self.ADC_data.get('RTDB', {}).get('1', 0.0):.3f} V")
+                self.Ui_Main_Project_obj.RTDC_5v_rd.setText(f"{self.ADC_data.get('RTDC', {}).get('1', 0.0):.3f} V")
+
+                self.Ui_Main_Project_obj.RTDA_Bat_rd.setText(f"{self.ADC_data.get('RTDA', {}).get('2', 0.0):.3f} V")
+                self.Ui_Main_Project_obj.RTDB_Bat_rd.setText(f"{self.ADC_data.get('RTDB', {}).get('2', 0.0):.3f} V")
+                self.Ui_Main_Project_obj.RTDC_Bat_rd.setText(f"{self.ADC_data.get('RTDC', {}).get('2', 0.0):.3f} V")
+
+
 
     ################################   Button Task CMD ###########################
 

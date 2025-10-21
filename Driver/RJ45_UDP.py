@@ -68,6 +68,15 @@ class RJ45_UDP:
         self.t = CmdTable()                           # Command/type lookup
         self.serial_ppp = Serial_ppp()                # PPP parser/packer
 
+        self.RTDA_VAL_CMD=["RTDA1", "RTDA2", "RTDA3", "RTDA4", "RTDA5", "RTDA6", "RTDA7", "RTDA8"]
+        self.RTDB_VAL_CMD=["RTDB1", "RTDB2", "RTDB3", "RTDB4", "RTDB5", "RTDB6", "RTDB7", "RTDB8"]
+        self.RTDC_VAL_CMD=["RTDC1", "RTDC2", "RTDC3", "RTDC4", "RTDC5", "RTDC6", "RTDC7", "RTDC8"]
+        self.RTD_VAL_CMD=self.RTDA_VAL_CMD+self.RTDB_VAL_CMD+self.RTDC_VAL_CMD
+
+        self.RTDA_ADC_CMD=["RTDA_ADC1", "RTDA_ADC2"]
+        self.RTDB_ADC_CMD=["RTDB_ADC1", "RTDB_ADC2"]
+        self.RTDC_ADC_CMD=["RTDC_ADC1", "RTDC_ADC2"]
+        self.RTD_ADC_CMD=self.RTDA_ADC_CMD+self.RTDB_ADC_CMD+self.RTDC_ADC_CMD
 
 
         self.HOST_PORT = 8888
@@ -107,7 +116,16 @@ class RJ45_UDP:
                     self.CMD_in = self.t.convert(messages_tuple[x2 * 2])  # mnemonic str
                     self.VAL_in = messages_tuple[x2 * 2 + 1]
 
+
+
+                    if self.CMD_in in self.RTD_ADC_CMD:
+                        self.VAL_in = self.VAL_in / 72  # Scale ADC to float Volts
+                    
+                    if self.CMD_in in self.RTD_VAL_CMD:
+                        self.VAL_in = self.VAL_in / 1024  # Scale RTD to float Celsius
+
                     self.Port_RJ45.JSON_out = {self.CMD_in: [time.perf_counter_ns(), self.VAL_in]}
+                    print(f"RJ45_UDP: {self.CMD_in} = {self.VAL_in}")
                     self.Port_RJ45.send()
 
 

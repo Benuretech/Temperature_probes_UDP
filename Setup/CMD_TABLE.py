@@ -76,18 +76,69 @@ class CmdTable:
         # - TYPE: payload interpretation for the 4-byte value ("i" or "f")
         # AI_HINT: Keep names consistent and stable; callers and docs rely on these mnemonics.
         self.array_table: Dict[str, Dict[str, Union[int, Literal["i", "f"]]]] = {
-            "RTD1": {"CMD": 101, "TYPE": "i"},   # Set address
-            "RTD2": {"CMD": 102, "TYPE": "i"},   # Power ON/OFF
-            "RTD3": {"CMD": 103, "TYPE": "i"},   # Voltage limit
-            "RTD4": {"CMD": 104, "TYPE": "i"},   # Current limit
-            "FAULT_RTD1": {"CMD": 111, "TYPE": "i"},   # Version
-            "FAULT_RTD2":  {"CMD": 112, "TYPE": "i"},   # Read address
-            "FAULT_RTD3":  {"CMD": 113, "TYPE": "i"},   # Read power ON/OFF
-            "FAULT_RTD4":  {"CMD": 114, "TYPE": "i"},   # Read voltage limit
-            "ADC1":  {"CMD": 121, "TYPE": "i"},   # Read current limit
-            "ADC2":   {"CMD": 122, "TYPE": "i"},   # Measure Vout
-            "ADC3":   {"CMD": 123, "TYPE": "i"},   # Measure Iout
-            "ADC4":   {"CMD": 124, "TYPE": "i"},   # Temperature T1
+
+
+
+
+            "RTDA1": {"CMD": 21, "TYPE": "i"},  # Command to send/receive channel 1 reading
+            "RTDA2": {"CMD": 22, "TYPE": "i"},  # Command to send/receive channel 2 reading
+            "RTDA3": {"CMD": 23, "TYPE": "i"},  # Command to send/receive channel 3 reading
+            "RTDA4": {"CMD": 24, "TYPE": "i"},  # Command to send/receive channel 4 reading
+
+            "RTDA5": {"CMD": 25, "TYPE": "i"},  # Command to send/receive channel 5 reading
+            "RTDA6": {"CMD": 26, "TYPE": "i"},  # Command to send/receive channel 6 reading
+            "RTDA7": {"CMD": 27, "TYPE": "i"},  # Command to send/receive channel 7 reading
+            "RTDA8": {"CMD": 28, "TYPE": "i"},  # Command to send/receive channel 8 reading
+
+            "FAULT_RTDA": {"CMD": 31, "TYPE": "i"},  # Command to send/receive channel RTDA reading
+            "RTDA_ADC1": {"CMD": 32, "TYPE": "i"},  # ADC1 from RTDA
+            "RTDA_ADC2": {"CMD": 33, "TYPE": "i"},  # ADC2 from RTDA
+
+            "RTDB1": {"CMD": 41, "TYPE": "i"},  # Command to send/receive channel 1 reading
+            "RTDB2": {"CMD": 42, "TYPE": "i"},  # Command to send/receive channel 2 reading
+            "RTDB3": {"CMD": 43, "TYPE": "i"},  # Command to send/receive channel 3 reading
+            "RTDB4": {"CMD": 44, "TYPE": "i"},  # Command to send/receive channel 4 reading
+
+            "RTDB5": {"CMD": 45, "TYPE": "i"},  # Command to send/receive channel 5 reading
+            "RTDB6": {"CMD": 46, "TYPE": "i"},  # Command to send/receive channel 6 reading
+            "RTDB7": {"CMD": 47, "TYPE": "i"},  # Command to send/receive channel 7 reading
+            "RTDB8": {"CMD": 48, "TYPE": "i"},  # Command to send/receive channel 8 reading
+
+            "FAULT_RTDB": {"CMD": 51, "TYPE": "i"},  # Command to send/receive channel RTDB reading
+            "RTDB_ADC1": {"CMD": 52, "TYPE": "i"},  # ADC1 from RTDB
+            "RTDB_ADC2": {"CMD": 53, "TYPE": "i"},  # ADC2 from RTDB
+
+            "RTDC1": {"CMD": 61, "TYPE": "i"},  # Command to send/receive channel 1 reading
+            "RTDC2": {"CMD": 62, "TYPE": "i"},  # Command to send/receive channel 2 reading
+            "RTDC3": {"CMD": 63, "TYPE": "i"},  # Command to send/receive channel 3 reading
+            "RTDC4": {"CMD": 64, "TYPE": "i"},  # Command to send/receive channel 4 reading
+
+            "RTDC5": {"CMD": 65, "TYPE": "i"},  # Command to send/receive channel 5 reading
+            "RTDC6": {"CMD": 66, "TYPE": "i"},  # Command to send/receive channel 6 reading
+            "RTDC7": {"CMD": 67, "TYPE": "i"},  # Command to send/receive channel 7 reading
+            "RTDC8": {"CMD": 68, "TYPE": "i"},  # Command to send/receive channel 8 reading
+
+            "FAULT_RTDC": {"CMD": 71, "TYPE": "i"},  # Command to send/receive channel RTDC reading
+            "RTDC_ADC1": {"CMD": 72, "TYPE": "i"},  # ADC1 from RTDC
+            "RTDC_ADC2": {"CMD": 73, "TYPE": "i"},  # ADC2 from RTDC
+
+
+
+
+
+
+            # "RTD1": {"CMD": 101, "TYPE": "i"},   # Set address
+            # "RTD2": {"CMD": 102, "TYPE": "i"},   # Power ON/OFF
+            # "RTD3": {"CMD": 103, "TYPE": "i"},   # Voltage limit
+            # "RTD4": {"CMD": 104, "TYPE": "i"},   # Current limit
+            # "FAULT_RTD1": {"CMD": 111, "TYPE": "i"},   # Version
+            # "FAULT_RTD2":  {"CMD": 112, "TYPE": "i"},   # Read address
+            # "FAULT_RTD3":  {"CMD": 113, "TYPE": "i"},   # Read power ON/OFF
+            # "FAULT_RTD4":  {"CMD": 114, "TYPE": "i"},   # Read voltage limit
+            # "ADC1":  {"CMD": 121, "TYPE": "i"},   # Read current limit
+            # "ADC2":   {"CMD": 122, "TYPE": "i"},   # Measure Vout
+            # "ADC3":   {"CMD": 123, "TYPE": "i"},   # Measure Iout
+            # "ADC4":   {"CMD": 124, "TYPE": "i"},   # Temperature T1
 
         }
 

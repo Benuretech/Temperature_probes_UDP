@@ -46,8 +46,6 @@ void setup()
   delay(5000);          // Wait for serial port to initialize
   Serial.println("Starting...");
 
-  pinMode(8, OUTPUT);
-  pinMode(22, OUTPUT);
   pinMode(INT_PIN1, INPUT_PULLUP);
 
   // Create binary semaphores
@@ -59,22 +57,8 @@ void setup()
   // ---------------------- Create Queues ----------------------
 
   // Sensor result queue
-  q_LTM2985_to_UDP = xQueueCreate(20, sizeof(struct RTD_result));
-  q_ADC_to_UDP = xQueueCreate(20, sizeof(int));
-
-  // xTaskCreate(Task_LTM2985,
-  //             "Task_LTM2985",
-  //             1024, // Stack size
-  //             NULL,
-  //             1, // Priority
-  //             &Task_LTM2985_Handle);
-
-  xTaskCreate(Task_read_ADC,
-              "Task_read_ADC",
-              1024, // Stack size
-              NULL,
-              1, // Priority
-              &Task_read_ADC_Handle);
+  q_LTM2985_to_UDP = xQueueCreate(20, sizeof(struct RTD_result_type));
+  q_ADC_to_UDP = xQueueCreate(20, sizeof(struct ADC_struct));
 
   xTaskCreate(Task_UDP,
               "Task_UDP",
@@ -83,7 +67,21 @@ void setup()
               2, // Higher priority for network
               &Task_UDP_Handle);
 
-  rp2040.wdt_begin(2000);
+  xTaskCreate(Task_LTM2985,
+              "Task_LTM2985",
+              2048, // Increased stack size for SPI operations
+              NULL,
+              1, // Priority
+              &Task_LTM2985_Handle);
+
+  xTaskCreate(Task_read_ADC,
+              "Task_read_ADC",
+              1024, // Stack size
+              NULL,
+              1, // Priority
+              &Task_read_ADC_Handle);
+
+  rp2040.wdt_begin(5000);
 }
 
 // ---------------------- Main Loop ----------------------

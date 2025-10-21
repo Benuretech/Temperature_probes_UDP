@@ -9,20 +9,21 @@
 // -----------------------------
 // Pin Definitions
 // -----------------------------
-#define SPI1_SCK 10   // SPI Clock pin
-#define SPI1_TX 11    // SPI MOSI (Master Out Slave In) pin
-#define SPI1_RX 12    // SPI MISO (Master In Slave Out) pin
-#define CHIP_SELECT 13 // SPI Chip Select pin
-#define INT_PIN1 1     // Interrupt pin
+
+#define SPI_RX 0      // SPI MISO (Master In Slave Out) pin
+#define CHIP_SELECT 1 // SPI Chip Select pin
+#define SPI_SCK 2     // SPI Clock pin
+#define SPI_TX 3      // SPI MOSI (Master Out Slave In) pin
+#define INT_PIN1 4    // Interrupt pin
 
 // -----------------------------
 // Initialization & Configuration
 // -----------------------------
 
 /**
- * @brief Initializes SPI1 communication for the LTM2985.
+ * @brief Initializes SPI communication for the LTM2985.
  */
-void set_SPI1_LTM2985();
+void set_SPI_LTM2985();
 
 /**
  * @brief Assigns specific sensors to selected channels (e.g., sense resistor, RTDs).
@@ -53,7 +54,7 @@ void assign_channel(uint8_t channel_number, uint32_t channel_assignment_data);
  * @param channel_number Channel to read from
  * @return RTD_result Struct containing raw value and fault code
  */
-RTD_result read_temp(uint8_t channel_number);
+RTD_result_type read_temp(uint8_t channel_number);
 
 /**
  * @brief Sends a command to the LTM2985 to begin temperature conversion on the selected channel.

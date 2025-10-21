@@ -27,6 +27,7 @@ void Task_UDP(void *pvParameters)
   bool UDP_Connection_OK = false; // Connection status flag
   bool UDP_Fail_Applied = false;  // Failure applied flag
   bool initialized = false;       // Initialization flag
+  ADC_struct ADC_reading;
 
   int reset_count = 0; // Reset count for watchdog timer
 
@@ -42,8 +43,7 @@ void Task_UDP(void *pvParameters)
 
   // local receiving variable from queue
 
-  RTD_result LTM2985_result;
-  int ADC_reading_int;
+  RTD_result_type RTD_result;
 
   int remote_Port = 8888;
 
@@ -57,10 +57,11 @@ void Task_UDP(void *pvParameters)
 
   for (;;)
   {
-    Serial.println("cycling");
+
     // Keep WiFi/MQTT alive
     if (WiFi.status() != WL_CONNECTED)
     {
+      Serial.println("not connected");
       wifiEnsureConnected();
     }
 
@@ -76,23 +77,58 @@ void Task_UDP(void *pvParameters)
 
     reset_count = 0; // Reset the reset count
 
-    // Drain TX queue (non-blocking)
-
-    while (xQueueReceive(q_ADC_to_UDP, &ADC_reading_int, 0) == pdTRUE)
+    if (xQueueReceive(q_ADC_to_UDP, &ADC_reading, 0) == pdTRUE)
     {
-      ADC_ppp.VAL.L_type = ADC_reading_int;
+
+      ADC_ppp.VAL.L_type = ADC_reading.ADC1;
+      ppp.add_CMD_VAL_out(RTD_ADC1, ADC_ppp.VAL.L_type);
+
+      ADC_ppp.VAL.L_type = ADC_reading.ADC2;
+      ppp.add_CMD_VAL_out(RTD_ADC2, ADC_ppp.VAL.L_type);
 
       if (WiFi.status() == WL_CONNECTED)
       {
         UDP_Connection_OK = 1;
         // Pass the data to PPP encoder
 
-        ppp.add_CMD_VAL_out(ADC_ppp.CMD, ADC_ppp.VAL.L_type);
         ppp.convert_out();
         Udp.beginPacket(REMOTE_IP, REMOTE_PORT);
         Udp.write((uint8_t *)ppp.escaped_stream_out, ppp.size_result_out);
         Udp.endPacket();
         Serial.println("UDP: ADC data sent");
+      }
+    }
+
+    if (xQueueReceive(q_LTM2985_to_UDP, &RTD_result, 0) == pdTRUE)
+    {
+      if (RTD_result.fault != 1)
+      {
+        Serial.print("UDP: RTD Channel ");
+        Serial.print(RTD_result.channel);
+        Serial.print("UDP: reading value ");
+        Serial.print(RTD_result.value);
+        Serial.print(" Fault Code: ");
+        Serial.println(RTD_result.fault);
+      }
+      else
+      {
+        ppp.add_CMD_VAL_out(RTD_result.channel, RTD_result.value);
+        Serial.print(RTD_result.channel);
+        Serial.print(" Value: ");
+        Serial.println(RTD_result.value);
+      }
+      LTM2985_ppp.CMD = RTD_result.channel;
+      LTM2985_ppp.VAL.L_type = RTD_result.value;
+      ppp.add_CMD_VAL_out(LTM2985_ppp.CMD, LTM2985_ppp.VAL.L_type);
+      if (WiFi.status() == WL_CONNECTED)
+      {
+        UDP_Connection_OK = 1;
+        // Pass the data to PPP encoder
+
+        ppp.convert_out();
+        Udp.beginPacket(REMOTE_IP, REMOTE_PORT);
+        Udp.write((uint8_t *)ppp.escaped_stream_out, ppp.size_result_out);
+        Udp.endPacket();
       }
     }
 
